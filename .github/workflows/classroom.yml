@@ -1,0 +1,40 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Palindrome Checker
+      id: palindrome-checker
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Palindrome Checker
+        setup-command: "./setup.sh"
+        command: "./tests/run-palindrome.sh"
+        timeout: 10
+        max-score: 6
+    - name: Word Censor
+      id: word-censor
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Word Censor
+        setup-command: "./setup.sh"
+        command: "./tests/run-wordsensor.sh"
+        timeout: 10
+        max-score: 4
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PALINDROME-CHECKER_RESULTS: "${{steps.palindrome-checker.outputs.result}}"
+        WORD-CENSOR_RESULTS: "${{steps.word-censor.outputs.result}}"
+      with:
+        runners: palindrome-checker,word-censor
