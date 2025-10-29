@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.lang.StringBuilder;
 public class PalindromeChecker {
     public static void main(String[] args) {
         // TODO: Create a Scanner and read a full line from the user with nextLine().
@@ -17,5 +17,22 @@ public class PalindromeChecker {
         //       "<original> is a palindrome"
         //       "<original> is not a palindrome"
         //       where <original> is exactly what the user typed (preserve casing).
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a word: ");
+
+        String input = sc.nextLine();
+        StringBuilder sb = new StringBuilder(input);
+        System.out.println(input);
+        System.out.println(sb.reverse());
+
+        if (sb.equals(sb.reverse()))
+        {
+            System.out.println(input + " is a palindrome!");
+        }
+        else
+        {
+            System.out.println(input + " is NOT a palindrome!");
+        }
     }
 }
