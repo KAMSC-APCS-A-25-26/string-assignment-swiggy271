@@ -8,10 +8,10 @@ public class WordCensor {
         // NOTE: Tests require exactly three asterisks (no ****) for every replacement
         Scanner sc = new Scanner (System.in);
         String input = sc.nextLine();
-        while (input.contains("dang"))
-        {
 
-        }
+        String fixed = input.replace("dang", "***").replace("nuts", "***").replace("oops","***").replace("yikes","***");
+        System.out.println("Censored: " + fixed);
+
 
     }
 }

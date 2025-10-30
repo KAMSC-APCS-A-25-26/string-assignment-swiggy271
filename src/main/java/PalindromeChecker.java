@@ -23,16 +23,16 @@ public class PalindromeChecker {
 
         String input = sc.nextLine();
         StringBuilder sb = new StringBuilder(input);
-        System.out.println(input);
-        System.out.println(sb.reverse());
+        // System.out.println(input);
+        // System.out.println(sb.reverse());
 
-        if (sb.equals(sb.reverse()))
+        if (input.equalsIgnoreCase(sb.reverse().toString()))
         {
-            System.out.println(input + " is a palindrome!");
+            System.out.println(input + " is a palindrome");
         }
         else
         {
-            System.out.println(input + " is NOT a palindrome!");
+            System.out.println(input + " is not a palindrome");
         }
     }
 }
